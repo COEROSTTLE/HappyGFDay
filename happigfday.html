@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy GF Day, Jageia!</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0e4d7; /* light brown vintage background */
+            color: #6b4f33; /* dark brown text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/old-wood-2.png'); /* Vintage wood texture */
+        }
+
+        .container {
+            position: relative;
+            background-color: #fff8e1; /* light beige color */
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            font-size: 20px;
+            border: 2px solid #6b4f33; /* dark border to match theme */
+        }
+
+        .heart {
+            color: #4e3629; /* brown heart color */
+            font-size: 40px;
+            animation: popHeart 1s ease-in-out forwards;
+        }
+
+        @keyframes popHeart {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .message {
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+            font-family: 'Georgia', serif;
+        }
+
+        #btnRevealMessage {
+            background-color: #6b4f33; /* dark brown button */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        #btnRevealMessage:hover {
+            background-color: #8e6d4f; /* lighter brown hover effect */
+        }
+
+        #messageBox {
+            display: none;
+            font-size: 18px;
+            color: #4e4e4e;
+            margin-top: 30px;
+            line-height: 1.5;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-size: 18px; /* smaller signature */
+            font-weight: normal; /* Removed bold */
+            font-family: 'Georgia', serif;
+            display: none; /* Hide signature initially */
+        }
+
+        .heart-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 150px;
+            animation: floatHeart 2s infinite alternate;
+            opacity: 0.7;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -120%) scale(1.2); }
+        }
+
+        .image-container {
+            margin-top: 20px;
+            text-align: center;
+            display: none; /* Hide image initially */
+        }
+
+        img {
+            max-width: 40%; /* Make the image smaller */
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #6b4f33;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #6b4f33;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            display: none; /* Hide note initially */
+        }
+
+        /* Heart-Shaped Polka Dot Pattern for Background */
+        .heart-pattern {
+            background: url('https://i.pinimg.com/originals/90/c5/0a/90c50a01b1f8a8c0bc663c7267ffb1c7.png') repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: none; /* Hidden by default, will show once the message is revealed */
+        }
+
+        .heart-pattern.show {
+            display: block; /* Show the pattern when message is revealed */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart-animation" id="heartAnimation">🤎</div> <!-- Brown Heart Emoji (main popped heart) -->
+        <div class="message">
+            Happy GF Day, Jageia!
+        </div>
+        <div id="messageBox">
+            <p>
+                I know things haven’t been working out between us lately, but I made this for you—a little reminder of how you are appreciated and loved, even when we’re apart. I miss you a lot. See you soon. I love you, baby.
+            </p>
+        </div>
+        <button id="btnRevealMessage" onclick="revealMessage()">Click here if you love me</button>
+
+        <!-- Signature -->
+        <div class="signature">Yours, Mir</div>
+
+        <!-- Image Upload Section -->
+        <div class="image-container" id="imageContainer">
+            <img src="https://i.postimg.cc/QdDh2z5b/image.png" alt="Your special image">
+        </div>
+
+        <!-- Note Below Image -->
+        <div class="note" id="note">
+            p.s. here's what makes you a "gf", in case you've forgotten about her
+        </div>
+
+        <!-- Heart Pattern Background (hidden until revealed) -->
+        <div class="heart-pattern" id="heartPattern"></div>
+
+    </div>
+
+    <script>
+        // Function to reveal the message, image, note and activate heart pattern background
+        function revealMessage() {
+            const messageBox = document.getElementById('messageBox');
+            const btnRevealMessage = document.getElementById('btnRevealMessage');
+            const heartPattern = document.getElementById('heartPattern');
+            const imageContainer = document.getElementById('imageContainer');
+            const note = document.getElementById('note');
+            const signature = document.getElementById('signature');
+            const heartAnimation = document.getElementById('heartAnimation'); // Heart element
+
+            // Hide the floating heart animation after the message is revealed
+            heartAnimation.style.display = 'none';
+
+            // Reveal the message
+            messageBox.style.display = 'block';
+            btnRevealMessage.style.display = 'none'; // Hide the button after revealing message
+
+            // Show the heart pattern in the background
+            heartPattern.classList.add('show');
+
+            // Reveal the image, note, and signature
+            imageContainer.style.display = 'block';
+            note.style.display = 'block';
+            signature.style.display = 'block';
+        }
+
+        // Make the heart pop animation trigger on page load
+        window.onload = () => {
+            const heart = document.querySelector('.heart-animation');
+            heart.classList.add('popHeart');
+        };
+    </script>
+</body>
+</html>
